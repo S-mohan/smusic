@@ -334,7 +334,6 @@
             //点击列表切歌
             var playlist = document.querySelectorAll('.m-music-list-wrap li'), i = 0;
             for(i; i< this.musicLength;i++){
-                //闭包执行
                 !(function(i){
                     playlist[i].addEventListener('click',function(){
                         me.resetPlayer(i);

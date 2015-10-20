@@ -1,7 +1,7 @@
 /**
  * SMusic
  * Author:Smohan
- * Version:1.0.0
+ * Version:1.0.1
  * url: http://www.smohan.net/lab/smusic.html
  * 使用请保留以上信息
  */
@@ -114,7 +114,8 @@
         config : {
             musicList : [],    //播放列表
             defaultVolume :.7,  //初始化音量 0 - 1.0 之间
-            defaultIndex  : 0  //初始化播放索引
+            defaultIndex  : 0,  //初始化播放索引
+            autoPlay  : false
         },
         /**
          * 创建播放列表
@@ -178,7 +179,11 @@
             }
             //可以播放时，设置缓冲区，重新监听 canplay  PS：当音频能够播放时，才会触发该事件
             this.audioDom.addEventListener('canplay',tempBuffer,false);
-            this.play();
+            if(this.config.autoPlay){  //增加是否启动就播放的开关
+                this.play();
+            }else{
+                this.pause();
+            }
         },
         /**
          * 音量设置

@@ -1,7 +1,7 @@
 /**
  * SMusic
  * Author:Smohan
- * Version:1.0.1
+ * Version:1.0.2
  * url: http://www.smohan.net/lab/smusic.html
  * 使用请保留以上信息
  */
@@ -95,7 +95,7 @@
     var bufferTimer = null;
 
     /**
-     *
+     * 构造函数
      * @param config
      * @constructor
      */
@@ -115,7 +115,9 @@
             musicList : [],    //播放列表
             defaultVolume :.7,  //初始化音量 0 - 1.0 之间
             defaultIndex  : 0,  //初始化播放索引
-            autoPlay  : false
+            autoPlay  : false,  //是否自动播放
+            defaultMode : 1,     //播放模式
+            callback    : function(obj){}  //回调函数，返回当前播放媒体信息
         },
         /**
          * 创建播放列表
@@ -184,6 +186,9 @@
             }else{
                 this.pause();
             }
+            var _callback = nowMusic;
+            _callback.index = idx;
+            typeof this.config.callback == "function" && this.config.callback(_callback);  //将当前播放信息回调
         },
         /**
          * 音量设置
@@ -213,6 +218,9 @@
          */
         initPlay : function(){
             var idx = this.config.defaultIndex;
+            if(this.playMode == 2){ //随机播放
+                idx = this.getRandomIndex();
+            }
             this.setVolume(this.config.defaultVolume);
             this.audioDom.load();
             this.resetPlayer(idx);
@@ -414,7 +422,7 @@
                 }
             };
             this.currentMusic = this.config.defaultIndex || 0;
-            this.playMode = 1; //播放模式，默认列表循环
+            this.playMode = this.config.defaultMode || 1; //播放模式，默认列表循环
             this.audioDom = document.createElement('audio');
             this.createListDom();
             this.initPlay();

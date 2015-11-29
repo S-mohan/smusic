@@ -5,6 +5,7 @@ Author:Smohan
 Version:1.0.2
 url: http://www.smohan.net/lab/smusic.html
 ```
+
 ###[项目地址][1]    
 
 ###[DEMO][2]

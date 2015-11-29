@@ -11,7 +11,7 @@ url: http://www.smohan.net/lab/smusic.html
 ###[DEMO][2]
 
 ###更新记录
-
+ 
 版本：```1.0.2```    
 新增```defaultMode```属性，控制初始化播放模式，新增```callback```回调方法，用于获取当前播放媒体文件信息  
 

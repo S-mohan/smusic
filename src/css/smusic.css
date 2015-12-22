@@ -1,6 +1,13 @@
 /**
  * SMusic
  * Author:Smohan
+ * Version:1.0.3
+ * url: http://www.smohan.net/lab/smusic.html
+ * 使用请保留以上信息
+ */
+/**
+ * SMusic
+ * Author:Smohan
  * Version:1.0.0
  * url: http://www.smohan.net/lab/smusic.html
  * 使用请保留以上信息
@@ -144,6 +151,7 @@ html,body{
     height: 4px;
     position: relative;
     background-color: #cecfd4;
+    cursor: pointer;
 }
 .grid-music-container .m-now-controls .u-process .buffer-process,.grid-music-container .m-now-controls .u-process .current-process{
     display: block;

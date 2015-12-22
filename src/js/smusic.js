@@ -1,7 +1,7 @@
 /**
  * SMusic
  * Author:Smohan
- * Version:1.0.2
+ * Version:1.0.3
  * url: http://www.smohan.net/lab/smusic.html
  * 使用请保留以上信息
  */
@@ -390,6 +390,17 @@
                 removeClass(btn.listCircular,'current');
                 removeClass(btn.randomPlay,'current');
                 me.playMode = 3;
+            });
+            //拖动进度条，快进
+            var $progress = this.musicDom["curProcess"].parentNode;
+            $progress.addEventListener("click",function(e){
+                e = e || window.event;
+                var left = this.getBoundingClientRect().left,width = this.offsetWidth;
+                var progressX = Math.min(width,Math.abs(e.clientX - left)); //防止超出范围
+                if(me.audioDom.currentTime && me.audioDom.duration){
+                    me.audioDom.currentTime = parseInt((progressX / width) * (me.audioDom.duration)); //重新设置播放进度
+                    me.play();
+                }    
             });
         },
         /**

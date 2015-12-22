@@ -2,7 +2,7 @@
 ```javascript
 html5音乐列表播放器
 Author:Smohan 
-Version:1.0.2
+Version:1.0.3
 url: http://www.smohan.net/lab/smusic.html
 ```
 

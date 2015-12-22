@@ -1,5 +1,5 @@
 /**
- * SMusic
+ * sMusic
  * Author:Smohan
  * Version:1.0.3
  * url: http://www.smohan.net/lab/smusic.html

@@ -4,39 +4,39 @@
     
 var musicList = [
     {
-        title : '属于',
-        singer : '梁静茹',
-        cover  : 'http://data.smohan.net/upload/other/media/2015/05/2015051701.jpg',
-        src    : 'http://data.smohan.net/upload/other/media/2015/05/2015051701.mp3'
+        title : '如果一切没有发生过',
+        singer : '张碧晨',
+        cover  : 'http://7xonl1.com1.z0.glb.clouddn.com/rYcmv.jpg',
+        src    : 'http://7xonl1.com1.z0.glb.clouddn.com/Cm45K2.mp3'
     },
     {
-        title : '夜夜夜夜',
-        singer : '梁静茹',
-        cover  : 'http://data.smohan.net/upload/other/media/2015/05/2015051702.jpg',
-        src    : 'http://data.smohan.net/upload/other/media/2015/05/2015051702.mp3'
+        title : '车站',
+        singer : '李健',
+        cover  : 'http://7xonl1.com1.z0.glb.clouddn.com/1DYuS4.jpg',
+        src    : 'http://7xonl1.com1.z0.glb.clouddn.com/1VvcW3.mp3'
     },
     {
-        title : '时间去哪儿',
-        singer : '王铮亮',
-        cover  : 'http://data.smohan.net/upload/other/media/2015/05/2015051703.jpg',
-        src    : 'http://data.smohan.net/upload/other/media/2015/05/2015051703.mp3'
+        title : '年轮 ',
+        singer : '张碧晨',
+        cover  : 'http://7xonl1.com1.z0.glb.clouddn.com/1EyrQ3.jpg',
+        src    : 'http://7xonl1.com1.z0.glb.clouddn.com/HpaN71.mp3'
     },
     {
         title : '她说',
         singer : '张碧晨',
-        cover  : 'http://data.smohan.net/upload/other/media/2015/05/2015051704.jpg',
-        src    : 'http://data.smohan.net/upload/other/media/2015/05/2015051704.mp3'
+        cover  : 'http://7xonl1.com1.z0.glb.clouddn.com/zUlA31.jpg',
+        src    : 'http://7xonl1.com1.z0.glb.clouddn.com/1O1TO4.mp3'
     },
     {
         title : '赤血长殷',
         singer : '王凯',
-        cover  : 'http://data.smohan.net/upload/other/cxcy/cover.jpg',
-        src    : 'http://data.smohan.net/upload/other/cxcy/music.mp3'
+        cover  : 'http://7xonl1.com1.z0.glb.clouddn.com/eukCI.jpg',
+        src    : 'http://7xonl1.com1.z0.glb.clouddn.com/14hk24.mp3'
     },
     {
-        title : '海阔天空',
-        singer : 'beyond',
-        cover  : 'http://data.smohan.net/upload/other/media/2015/05/2015051705.jpg',
-        src    : 'http://data.smohan.net/upload/other/media/2015/05/2015051705.mp3'
+        title : 'My Love',
+        singer : 'WestLife',
+        cover  : 'http://7xonl1.com1.z0.glb.clouddn.com/NYBS32.jpg',
+        src    : 'http://7xonl1.com1.z0.glb.clouddn.com/1IdhM4.mp3'
     }
 ];

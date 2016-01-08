@@ -2,7 +2,7 @@
 ```javascript
 html5音乐列表播放器
 Author:Smohan 
-Version:1.0.3
+Version:2.0.0
 url: http://www.smohan.net/lab/smusic.html
 ```
 
@@ -13,7 +13,7 @@ url: http://www.smohan.net/lab/smusic.html
 ###更新记录
 
 版本：```2.0.0```    
-增加拖动进度条，调整播放进度功能
+增加歌词展示功能
  
 版本：```1.0.3```    
 增加拖动进度条，调整播放进度功能

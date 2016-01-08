@@ -1,18 +1,11 @@
-/**
- * SMusic
- * Author:Smohan
- * Version:1.0.3
- * url: http://www.smohan.net/lab/smusic.html
- * 使用请保留以上信息
- */
-/**
- * SMusic
- * Author:Smohan
- * Version:1.0.0
- * url: http://www.smohan.net/lab/smusic.html
- * 使用请保留以上信息
- */
 @charset "utf-8";
+/**
+ * SMusic
+ * Author:Smohan
+ * Version:2.0.0
+ * url: http://www.smohan.net/lab/smusic.html
+ * 使用请保留以上信息
+ */
 /*reset*/
 html,body,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,blockquote,pre,hr,figure,table,caption,th,td,form,fieldset,legend,input,button,textarea,menu{margin:0;padding:0;-webkit-tap-highlight-color:rgba(0,0,0,0);word-wrap: break-word;font-size: inherit;line-height: inherit;overflow: visible;}
 header,footer,section,article,aside,nav,address,figure,figcaption,menu,details{display:block;}
@@ -47,7 +40,7 @@ header,footer,section,article,aside,nav,address,figure,figcaption,menu,details{d
 ::-webkit-scrollbar-button:vertical{display:none}
 ::-webkit-scrollbar-track:vertical{background-color:transparent;}
 ::-webkit-scrollbar-track-piece{background-color:transparent;}
-::-webkit-scrollbar-thumb:vertical{background-color:#3792ef;border-radius:6px}
+::-webkit-scrollbar-thumb:vertical{background-color:rgba(55,146,239,.3);border-radius:6px}
 ::-webkit-scrollbar-thumb:vertical:hover,
 ::-webkit-scrollbar-thumb:vertical:active {background-color: #2e86ef}
 
@@ -64,11 +57,8 @@ html,body{
     width: 520px;
     height: 276px;
     padding: 20px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -158px;
-    margin-left: -280px;
+    position: relative;
+    margin: 80px auto;
     background-color: rgba(255,255,255,.7);
     font-family: "Microsoft Yahei","微软雅黑","Helvetica Neue","Hiragino Sans GB",Helvetica,Tahoma,sans-serif;
     text-shadow: 1px 0 0 rgba(255,255,255,.7);
@@ -335,4 +325,53 @@ html,body{
 }
 .u-play-btn.mode-single.current{
     background-position: -221px -80px;
+}
+/*歌词*/
+.grid-music-container .m-music-lyric-wrap{
+    width: 220px;
+    height: 100%;
+    background-color: rgba(255,255,255,.7);
+    position: absolute;
+    right: -220px;
+    top : 0;
+    border-left: 1px solid #fff;
+    overflow: hidden;
+}
+.grid-music-container .m-music-lyric-wrap .inner{
+    position: absolute;
+    top:20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.grid-music-container .m-music-lyric-wrap .inner ul{
+    position: absolute;
+    width: 100%;
+    top:0;
+    left: 0;
+    overflow: hidden;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+}
+.grid-music-container .m-music-lyric-wrap ul li{
+    display: block;
+    line-height: 30px;
+    height: 30px;
+    overflow: hidden;
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+}
+.grid-music-container .m-music-lyric-wrap ul li.current{
+    color: #2e86ef;
+    font-size: 14px;
+    font-weight: bold;
+}
+.grid-music-container .m-music-lyric-wrap ul li.eof{
+    height: 100%;
+    line-height: 250px;
+    font-size: 20px;
+    color: #999;
 }

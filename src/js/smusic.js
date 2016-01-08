@@ -1,7 +1,7 @@
 /**
  * sMusic
  * Author:Smohan
- * Version:1.0.3
+ * Version: 2.0.0
  * url: http://www.smohan.net/lab/smusic.html
  * 使用请保留以上信息
  */
@@ -92,8 +92,37 @@
         timer += second;
         return timer;
     }
-    var bufferTimer = null;
 
+    /**
+     * 简单Ajax请求
+     * @param url
+     * @param callback
+     * @returns {boolean}
+     */
+    function ajax(url,callback){
+        if(!url) return false;
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                var status = xhr.status;
+                //console.log(status);
+                if((status >= 200 && status < 300) || status == 304){
+                    (callback && typeof callback == "function") && callback(xhr.responseText);
+                    return true;
+                }else{
+                    return new Error("ajax请求失败");
+                }
+            }
+        };
+        xhr.open("GET", url,true);
+        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+        xhr.send();
+        return true;
+    }
+   /* ajax("./README.md", function (res) {
+        console.log(res);
+    });*/
+    var bufferTimer = null;
     /**
      * 构造函数
      * @param config
@@ -170,6 +199,10 @@
             this.audioDom.src = nowMusic.src;
             this.musicDom.cover.innerHTML = '<img src="'+nowMusic.cover+'" title="'+nowMusic.title + ' -- '+ nowMusic.singer + '">';
             this.musicDom.title.innerHTML = '<strong>'+nowMusic.title+'</strong><small>'+nowMusic.singer+'</small>';
+            me.musicDom["lyricWrap"].innerHTML = '<li class="eof">正在加载歌词...</li>';
+            me.musicDom["lyricWrap"].style.marginTop = 0 + "px";
+            me.musicDom["lyricWrap"].scrollTop = 0;
+            this.getLyric(idx);
             //设置播放列表选中
             var playlist = document.querySelectorAll('.m-music-list-wrap li'), i = 0;
             for(i; i< this.musicLength;i++){
@@ -308,6 +341,29 @@
                     //播放百分比 * 进度条长度 = 当前播放进度
                     me.musicDom.time.innerHTML = ''+surplusTime+'/'+totalTime+'';
                     me.musicDom.curProcess.style.width = currentProcess + 'px';
+                    //歌词滚动
+                    //设置歌词
+                    var curTime = parseInt(audio.currentTime*1e3);
+                    var lyrics  = me.musicDom["lyricWrap"].querySelectorAll(".u-lyric"),
+                        sizes   = lyrics.length,
+                        i       = 0;
+                    if(sizes > 1){
+                        for(;i < sizes ; i++){
+                            var lyl = lyrics[i];
+                            if(lyl){
+                                var _time = parseFloat(lyl.getAttribute("data-time"));
+                                if(curTime >= _time){
+                                    var top = (i-1) * 30; //30是每个LI的高度
+                                    me.musicDom["lyricWrap"].style.marginTop = -top + "px";
+                                    //移除之前的current，想念Jquery的siblings
+                                    for(var j = 0 ; j < sizes ;j++){
+                                        lyrics[j] && removeClass(lyrics[j],"current");
+                                    }
+                                    addClass(lyl,"current"); //给当前行加上current
+                                }
+                            }
+                        }
+                    }
                 }
             },false);
             //监听 播放结束，PS:当音频播放完毕或者播放结束时会触发ended事件
@@ -404,6 +460,90 @@
             });
         },
         /**
+         * 加载歌词
+         * 目前只支持UTF8编码
+         * 不支持跨域，如果要跨域则自行更改ajax为jsonp
+         * @param index
+         */
+        getLyric : function (index) {
+            if(this.lyricCache[index]){
+                this.renderLyric(this.lyricCache[index]);
+            }else{
+                var url = this.musicList[index]["lyric"], me = this;
+                if(url){
+                    ajax(url, function (data) {
+                        me.lyricCache[index] = data ? data : null;
+                        me.renderLyric(data);
+                    });
+                }else{
+                    this.lyricCache[index] = null;
+                    me.renderLyric(null);
+                }
+            }
+        },
+        /**
+         * 解析歌词
+         * 歌词按时间分组并存储到数组
+         * [{content: "车站 (Live) - 李健↵",time: 800}...]
+         * @param lyric
+         * @returns {*}
+         */
+        parseLyric : function (lyric) {
+            if(!lyric) return lyric;
+            var result = [];
+            var cArr = lyric.split("[");
+            cArr.shift();
+            for (var i = 0; i < cArr.length; i++) {
+                var o = cArr[i].split("]");
+                if (o.length >= 2 && o[1] != "") {
+                    var tArr = o[0].split(":"), t = 0;
+                    if (tArr.length >= 2) {
+                        var mtArr = tArr[0].split(""), mt = 0;
+                        for (var k = 0; k < mtArr.length; k++) {
+                            if (Number(mtArr[k]) > 0) {
+                                mt += mtArr[k] * Math.pow(10, mtArr.length - k - 1);
+                            }
+                        }
+                        t += mt * 60;
+                        var stArr = tArr[1].split("."), intStArr = stArr[0].split(""), st = 0;
+                        for (var j = 0; j < intStArr.length; j++) {
+                            if (Number(intStArr[j]) > 0) {
+                                st += intStArr[j] * Math.pow(10, intStArr.length - j - 1);
+                            }
+                        }
+                        t += Number(st + "." + stArr[1]);
+                    }
+                    if(t && typeof t == "number"){
+                        result.push({time : parseInt(t * 1e3), content : o[1]});
+                    }
+                }
+            }
+            return result;
+        },
+        /**
+         * 渲染歌词
+         * @param lyric
+         */
+        renderLyric : function (lyric) {
+            lyric = this.parseLyric(lyric);
+            var me = this, dom = me.musicDom["lyricWrap"], tpl = "",len, i = 0;
+            len = lyric ? lyric.length : 0;
+            if(lyric && len){
+                for( i ; i < len ; i ++){
+                    var data = lyric[i];
+                    var time = data["time"], text = data["content"].trim();
+                    text = text ? text : '--- smusic ---';
+                    tpl += '<li class="u-lyric f-toe" data-time="'+time+'">'+text+'</li>';
+                }
+                tpl && (tpl += '<li class="u-lyric">www.smohan.net</li>');
+            }else{
+                tpl = '<li class="eof">暂无歌词...</li>';
+            }
+            dom.style.marginTop = 0 + "px";
+            dom.screenTop = 0;
+            dom.innerHTML = tpl;
+        },
+        /**
          * 初始化播放器
          */
         init : function(){
@@ -416,6 +556,7 @@
                 bufferProcess : $('.grid-music-container .buffer-process'),
                 time : $('.grid-music-container .u-time'),
                 listWrap : $('.grid-music-container .m-music-list-wrap'),
+                lyricWrap : $('.grid-music-container .js-music-lyric-content'), //歌词区域
                 volume   : {
                     volumeProcess : $('.grid-music-container .volume-process'),
                     volumeCurrent : $('.grid-music-container .volume-current'),
@@ -434,6 +575,7 @@
             };
             this.currentMusic = this.config.defaultIndex || 0;
             this.playMode = this.config.defaultMode || 1; //播放模式，默认列表循环
+            this.lyricCache = {}; //缓存已加载的歌词文件
             this.audioDom = document.createElement('audio');
             this.createListDom();
             this.initPlay();

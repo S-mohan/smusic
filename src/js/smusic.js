@@ -10,7 +10,7 @@
 (() => {
     "use strict";
     const [doc, win, utils, isTouch] = [document, window, MoUtils, ("ontouchend" in document)];
-    const [version, homepage, thumbnailPlaceholder] = ['2.1.0', 'https://smohan.net/lab/smusic.html', '//demo.smohan.net/static/img/smusic.jpg'];
+    const [version, homepage, thumbnailPlaceholder] = ['2.1.0', 'https://smohan.im/lab/smusic', '//demo.smohan.net/static/img/smusic.jpg'];
     const [$, $$, bind, noop] = [utils.$, utils.$$, utils.bind, function() {}];
 
     const
@@ -134,13 +134,13 @@
         <figure class="smusic-music-thumbnail">
             <img src="${thumbnailPlaceholder}" class="js-smusic-song--thumbnail" alt="${homepage}" />
         </figure>
-        <!--smusic start: music play ctrl https://smohan.net/lab/smusic.html -->
+        <!--smusic start: music play ctrl https://smohan.im/lab/smusic -->
         <div class="smusic-music-ctrl">
             <a class="smusic-ctrl--prev js-smusic-btn--prev" title="上一首"><i class="smusic-ico-prev"></i></a>
             <a class="smusic-ctrl--play smusic-music-play js-smusic-btn--play" title="暂停"></a>
             <a class="smusic-ctrl--next js-smusic-btn--next"><i class="smusic-ico-next" title="下一首"></i></a>
         </div>
-        <!--smusic end: music ctrl https://smohan.net/lab/smusic.html -->
+        <!--smusic end: music ctrl https://smohan.im/lab/smusic -->
     </div>
     <div class="smusic-panel">
         <div class="smusic-panel--scroll show-list js-smusic-scroll--panel">

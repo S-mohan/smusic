@@ -1,0 +1,41 @@
+{
+  "name": "smusic",
+  "version": "2.1.0",
+  "description": "html5 music player",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/S-mohan/smusic.git"
+  },
+  "keywords": [
+    "smusic",
+    "html5",
+    "audio"
+  ],
+  "author": "smohan https://smohan.im",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/S-mohan/smusic/issues"
+  },
+  "homepage": "https://github.com/S-mohan/smusic",
+  "dependencies": {
+    "babel-preset-es2015": "^6.18.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-clean": "^0.3.2",
+    "gulp-clean-css": "^2.0.13",
+    "gulp-concat": "^2.6.1",
+    "gulp-header": "^1.8.8",
+    "gulp-make-css-url-version": "^0.0.13",
+    "gulp-order": "^1.1.1",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.2.0",
+    "gulp-uglify": "^2.0.0"
+  }
+}

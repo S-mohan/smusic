@@ -43,13 +43,13 @@ url: https://smohan.im/lab/smusic
 创建musicList文件或者数组,歌曲列表格式如下
 ```javascript
 var songList = [
-{
-	title : '成都',
-	singer : '赵雷',
-	audio : 'http://m2.music.126.net/4gwWNLUdEZuPCKGUWWu_rw==/18720284975304502.mp3',
-	thumbnail : 'http://p1.music.126.net/34YW1QtKxJ_3YnX9ZzKhzw==/2946691234868155.jpg',
-	lyric : './data/chengdu.lrc'
-}
+	{
+		title : '成都',
+		singer : '赵雷',
+		audio : 'http://m2.music.126.net/4gwWNLUdEZuPCKGUWWu_rw==/18720284975304502.mp3',
+		thumbnail : 'http://p1.music.126.net/34YW1QtKxJ_3YnX9ZzKhzw==/2946691234868155.jpg',
+		lyric : './data/chengdu.lrc'
+	}
 ]
 ```
 
@@ -132,7 +132,6 @@ next(callback)
 */
 prev(callback)
 
-
 /**
 * 播放
 * @param callback
@@ -144,10 +143,6 @@ play(callback)
 * @param callback
 */
 pause(callback)
-
-//析构
-destroy()
-
 ```
 
 ###更新记录

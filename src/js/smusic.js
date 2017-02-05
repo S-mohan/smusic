@@ -562,7 +562,6 @@
         //点击列表
 
         bind(DOM.scroll.list, 'click', '.js-smusic-song--item', function(event) {
-            console.log(this)
             const index = this.getAttribute('data-song-index');
             if (utils.hasClass(this, 'active')) {
                 self.play();

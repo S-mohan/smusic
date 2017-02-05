@@ -1,8 +1,6 @@
 #Smusic
-> html5音乐列表播放器
-Author:Smohan
-Version:2.0.1
-url: https://smohan.im/lab/smusic
+
+> html5音乐列表播放器<br>Author:Smohan<br>Version:2.0.1<br>url: https://smohan.im/lab/smusic
 
 
 ![smuic](//img.smohan.net/article/9615e13fcf51eae18dc4d40afaa9e0ab.jpg 'smusic')

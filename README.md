@@ -1,5 +1,7 @@
 #Smusic
 
+> 一款基于HTML5、Css3的列表式音乐播放器，包含列表，音量，进度，时间，歌词展示以及播放模式等功能，不依赖任何库
+
 > html5音乐列表播放器<br>Author:Smohan<br>Version:2.0.1<br>url: [https://smohan.im/lab/smusic](https://smohan.im/lab/smusic)
 
 

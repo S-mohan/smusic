@@ -292,10 +292,10 @@
 
     /**
      * 缓存Dom
-     * @returns {__domCatch}
+     * @returns {__domCache}
      * @private
      */
-    const __domCatch = function() {
+    const __domCache = function() {
         const smusic = this.smusic;
         this.dom = {
             scroll: {
@@ -337,7 +337,7 @@
      * 渲染列表
      * @private
      */
-    const __rendList = function() {
+    const __renderList = function() {
         const self = this,
             list = self.dom.scroll.list,
             data = self.playList;
@@ -401,7 +401,7 @@
     };
 
 
-    //记录buffer的Interval事件
+    //记录buffer的Interval
     const _bufferTimer = {};
 
     /**
@@ -735,7 +735,7 @@
 
         //刷新播放列表
         refreshList() {
-            __rendList.call(this);
+            __renderList.call(this);
         };
 
         /**
@@ -847,9 +847,9 @@
             this.smusicId = create.id;
             this.audio = this.smusic.getElementsByTagName('audio')[0];
             //缓存DOM
-            __domCatch.call(this);
+            __domCache.call(this);
             //渲染列表
-            __rendList.call(this);
+            __renderList.call(this);
             //绑定事件
             __bindAction.call(this);
             //设置音量

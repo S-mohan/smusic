@@ -46,29 +46,53 @@
             cursor: pointer;
             font: inherit;
         }
+        .button-group button:disabled {
+            opacity: .5;
+            cursor: not-allowed;
+        }
+        .gitbtns {
+            margin:20px;
+            text-align: center;
+        }
+        .gitbtns iframe {
+            display: inline;
+            width: auto;
+            max-width: 120px;
+        }
     </style>
 </head>
 <body>
 
-<h1>Smusic</h1>
-<p class="homepage">项目地址: <a href="https://smohan.im/lab/smusic" target="_blank">https://smohan.im/lab/smusic</a></p>
-<article class="wrapper">
-    <div id="smusic"></div>
-    <div class="button-group">
-        <button id="getCurrentMusic">获取当前播放歌曲</button>
-        <button id="addMusicToList">向列表中添加音乐</button>
+    <h1>Smusic</h1>
+    <p class="homepage">项目地址: <a href="https://smohan.im/lab/smusic" target="_blank">https://smohan.im/lab/smusic</a></p>
+    <div class="gitbtns">
+        <iframe src="https://ghbtns.com/github-btn.html?user=S-mohan&repo=smusic&type=star&count=true" frameborder="0" scrolling="0" height="20px"></iframe>
+        <iframe src="https://ghbtns.com/github-btn.html?user=S-mohan&repo=smusic&type=fork&count=true" frameborder="0" scrolling="0" height="20px"></iframe>
     </div>
-    <p style="color: #fff; text-align: center;">请打开控制台(F12)查看</p>
-</article>
+    <article class="wrapper">
+        <div id="smusic"></div>
+        <div class="button-group">
+            <button id="getCurrentMusic">获取当前播放歌曲</button>
+            <button id="addMusicToList">向列表中添加音乐</button>
+        </div>
+        <p style="color: #fff; text-align: center;">请打开控制台(F12)查看</p>
+    </article>
 
 
-<script src="./songList.js"></script>
-<script src="../build/smusic.min.js"></script>
-<script>
+    <script src="./songList.js"></script>
+    <script src="../build/smusic.min.js"></script>
+    <script>
+
+     var $ = function (id) {
+        return document.getElementById(id)
+     }
+
     var smusic = SMusic(songList, {
-        container : document.getElementById('smusic')
+        container : $('smusic')
     });
     smusic.init();
+
+
 
     var newSong = {
         title : '向天再借五百年',
@@ -78,7 +102,7 @@
         lyric : null
     };
 
-    document.getElementById('getCurrentMusic').addEventListener('click', function () {
+    $('getCurrentMusic').addEventListener('click', function () {
         var data = smusic.getCurrentInfo();
         var info = '';
         if (data) {
@@ -91,11 +115,12 @@
         }
     });
 
-    document.getElementById('addMusicToList').addEventListener('click', function () {
+    $('addMusicToList').addEventListener('click', function () {
         console.log("追加前：" + smusic.playList.length + "首");
         smusic.addSong(newSong, function () {
             newSong = null; //防止重复追加
         });
+        this.setAttribute('disabled', 'disabled');
         console.log("追加后：" + smusic.playList.length + "首")
     });
 </script>

@@ -116,6 +116,8 @@ gulp.task('build:js', () => {
 //min => build
 gulp.task('build', ['build:js', 'build:css']);
 
+
+
 gulp.task('watch', () => {
     gulp.watch('src/js/**/*.js', ['compile:js']);
     gulp.watch('src/scss/**/*.scss', ['compile:css']);

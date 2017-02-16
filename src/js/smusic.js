@@ -78,10 +78,13 @@
         //初始化音量 (0 - 1之间)
         volume: .5,
         //自动播放
-        autoPlay: true
+        autoPlay: true,
+        //加载时默认显示面板，['list', 'lyric']
+        panel: 'list'
     };
 
     let uid = 1;
+
 
     /**
      * 抛出异常
@@ -91,11 +94,13 @@
         throw new Error("Smusic Error：" + message);
     };
 
+
     /**
      * 输出log
      * @param message
      */
     const log = message => win.console.log("Smusic Log：" + message);
+
 
     /**
      * 格式化时间
@@ -118,11 +123,18 @@
         return times;
     };
 
+
     /**
-     * 模板
-     * @type {string}
+     * [获取模板]
+     * @param  {String} panel [默认显示面板]
+     * @return {String} 
      */
-    const SMUSIC_TPL = `
+    const __getSmusicTpl = (panel = 'list') => {
+
+        const isList = panel == 'list'
+        const panelClass = isList ? 'show-list' : ''
+
+        return `
 <main class="smusic-main">
     <div class="smusic-panel">
         <div class="smusic-music-info">
@@ -143,7 +155,7 @@
         <!--smusic end: music ctrl https://smohan.im/lab/smusic -->
     </div>
     <div class="smusic-panel">
-        <div class="smusic-panel--scroll show-list js-smusic-scroll--panel">
+        <div class="smusic-panel--scroll js-smusic-scroll--panel ${panelClass}">
             <div class="smusic-lyric--wrap">
                 <ul class="smusic-lyric--scroll js-smusic-scroll--lyric"></ul>
             </div>
@@ -170,14 +182,18 @@
     </div>
     <div class="smusic-ctrl smusic-ctrl--right">
         <time class="smusic-time js-smusic-time">00:00/00:00</time>
-        <a class="smusic-ctrl--lyric js-smusic-btn--lyric js-smusic-panel--tab" data-panel="lyric" title="歌词"><i class="smusic-ico-lyric"></i></a>
-        <a class="smusic-ctrl--list js-smusic-btn--list js-smusic-panel--tab active" data-panel="list" title="列表"><i class="smusic-ico-list"></i></a>
+        <a class="smusic-ctrl--lyric js-smusic-btn--lyric js-smusic-panel--tab ${!isList ? 'active' : ''}" data-panel="lyric" title="歌词"><i class="smusic-ico-lyric"></i></a>
+        <a class="smusic-ctrl--list js-smusic-btn--list js-smusic-panel--tab ${isList ? 'active' : ''}" data-panel="list" title="列表"><i class="smusic-ico-list"></i></a>
     </div>
-</aside>`;
+</aside>`
+    }
+
+
 
     //歌词缓存
     const _lyricCache = {};
     const timeReg = /\[\d*:\d*((\.|:)\d*)*]/g;
+
 
     /**
      * 解析歌词
@@ -274,7 +290,9 @@
      * @returns {{element: Element, id: number}}
      * @private
      */
-    const _createDom = (container = doc.body) => {
+    const _createDom = (options = {}) => {
+        const container = options.container;
+
         let id = uid++;
         const smusic = doc.createElement('div');
         smusic.id = 'smohan-smusic-' + id;
@@ -282,13 +300,14 @@
         smusic.setAttribute('data-smusic-version', version);
         smusic.setAttribute('data-smusic-homepage', homepage);
         smusic.setAttribute('data-smusic-id', id.toString());
-        smusic.innerHTML = SMUSIC_TPL + '<audio class="js-smusic--audio" hidden></audio>';
+        smusic.innerHTML = __getSmusicTpl(options.panel || 'list') + '<audio class="js-smusic--audio" hidden></audio>';
         container.appendChild(smusic);
         return {
             element: smusic,
             id: id
         };
     };
+
 
     /**
      * 缓存Dom
@@ -333,6 +352,7 @@
         };
     };
 
+
     /**
      * 渲染列表
      * @private
@@ -352,6 +372,7 @@
         });
         list.innerHTML = html;
     };
+
 
     /**
      * 渲染歌词
@@ -842,7 +863,7 @@
 
         //初始化
         init() {
-            const [config, create] = [this.config, _createDom(this.config.container)];
+            const [config, create] = [this.config, _createDom(this.config)];
             this.smusic = create.element;
             this.smusicId = create.id;
             this.audio = this.smusic.getElementsByTagName('audio')[0];

@@ -82,7 +82,9 @@ var songList = [
 	//初始化音量 (0 - 1之间)
 	volume: .5,
 	//自动播放
-	autoPlay: true
+	autoPlay: true,
+	//默认显示面板
+	panel: 'list' //['list' 列表面板, 'lyric' 歌词面板]
 }
 ```
 

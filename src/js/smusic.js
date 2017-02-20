@@ -10,7 +10,7 @@
 (() => {
     "use strict";
     const [doc, win, utils, isTouch] = [document, window, MoUtils, ("ontouchend" in document)];
-    const [version, homepage, thumbnailPlaceholder] = ['2.1.0', 'https://smohan.im/lab/smusic', '//demo.smohan.net/static/img/smusic.jpg'];
+    const [version, homepage, thumbnailPlaceholder] = ['2.1.0', 'https://smohan.im/lab/smusic', 'https://s-mohan.github.io/demo/static/img/smusic.jpg'];
     const [$, $$, bind, noop] = [utils.$, utils.$$, utils.bind, function() {}];
 
     const

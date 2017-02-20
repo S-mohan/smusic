@@ -166,4 +166,4 @@ pause(callback)
 
 
 [1]: https://smohan.im/lab/smusic
-[2]: https://demo.smohan.net/im/smusic/
+[2]: https://s-mohan.github.io/demo/smusic/index.html

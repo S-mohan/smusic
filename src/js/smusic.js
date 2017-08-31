@@ -2,16 +2,16 @@
  * smusic v2.1.0
  * author : smohan
  * The MIT License (MIT)
- * Copyright (c) 2016 https://smohan.im(net).
- * https://smohan.im/lab/lab/smusic
+ * Copyright (c) 2016 https://smohan.net.
+ * https://smohan.net/lab/smusic
  * https://github.com/S-mohan/smusic
  */
 
 (() => {
     "use strict";
     const [doc, win, utils, isTouch] = [document, window, MoUtils, ("ontouchend" in document)];
-    const [version, homepage, thumbnailPlaceholder] = ['2.1.0', 'https://smohan.im/lab/smusic', 'https://s-mohan.github.io/demo/static/img/smusic.jpg'];
-    const [$, $$, bind, noop] = [utils.$, utils.$$, utils.bind, function() {}];
+    const [version, homepage, thumbnailPlaceholder] = ['2.1.0', 'https://smohan.net/lab/smusic', 'https://s-mohan.github.io/demo/static/img/smusic.jpg'];
+    const [$, $$, bind, noop] = [utils.$, utils.$$, utils.bind, function () { }];
 
     const
         EVENT_START = isTouch ? 'touchstart' : 'mousedown',
@@ -33,7 +33,7 @@
             height: $bar.offsetHeight
         };
         bind($slider, 'click', event => event.stopPropagation());
-        bind($slider, EVENT_START, function(event) {
+        bind($slider, EVENT_START, function (event) {
             event = event || win.event;
             event.stopPropagation();
             let start, offset;
@@ -46,7 +46,7 @@
                 y: this.offsetTop
             };
             const MAX = (direction == "horizontal") ? barSize.width : barSize.height;
-            const moveHandle = function(event) {
+            const moveHandle = function (event) {
                 event = event || win.event;
                 event.stopPropagation();
                 let thisX = event.clientX || event.touches[0].clientX,
@@ -57,7 +57,7 @@
                 (callback && typeof callback == "function") && callback(range);
             };
             bind(doc, EVENT_MOVE, moveHandle);
-            bind(doc, EVENT_END, function(event) {
+            bind(doc, EVENT_END, function (event) {
                 (end && typeof end == "function") && end();
                 utils.unbind(doc, EVENT_MOVE, moveHandle);
             });
@@ -146,13 +146,13 @@
         <figure class="smusic-music-thumbnail">
             <img src="${thumbnailPlaceholder}" class="js-smusic-song--thumbnail" alt="${homepage}" />
         </figure>
-        <!--smusic start: music play ctrl https://smohan.im/lab/smusic -->
+        <!--smusic start: music play ctrl https://smohan.net/lab/smusic -->
         <div class="smusic-music-ctrl">
             <a class="smusic-ctrl--prev js-smusic-btn--prev" title="上一首"><i class="smusic-ico-prev"></i></a>
             <a class="smusic-ctrl--play smusic-music-play js-smusic-btn--play" title="暂停"></a>
             <a class="smusic-ctrl--next js-smusic-btn--next"><i class="smusic-ico-next" title="下一首"></i></a>
         </div>
-        <!--smusic end: music ctrl https://smohan.im/lab/smusic -->
+        <!--smusic end: music ctrl https://smohan.net/lab/smusic -->
     </div>
     <div class="smusic-panel">
         <div class="smusic-panel--scroll js-smusic-scroll--panel ${panelClass}">
@@ -201,7 +201,7 @@
      * @returns {{}}
      * @private
      */
-    const _parseLyric = function(lyric) {
+    const _parseLyric = function (lyric) {
         // 将歌词通过换行符转换为数组，
         // 每一行格式如 [00:00.00] 作曲 : 赵雷
         const lyricRows = lyric
@@ -235,7 +235,7 @@
      * @param callback
      * @private
      */
-    const _getLyric = function(playList, index, callback) {
+    const _getLyric = function (playList, index, callback) {
         const song = playList[index];
         const lyricUrl = song['lyric'];
         const cacheName = '_smusic_lyric_' + index;
@@ -246,7 +246,7 @@
             utils.http({
                 type: 'GET',
                 url: lyricUrl,
-                done: function(response) {
+                done: function (response) {
                     if (response) {
                         response = _parseLyric(response);
                     } else {
@@ -271,7 +271,7 @@
      * @returns {*}
      * @private
      */
-    const _getRandomIndex = function(playIndex, len) {
+    const _getRandomIndex = function (playIndex, len) {
         let array = [];
         for (let i = 0; i < len; i++) {
             if (i != playIndex) {
@@ -314,7 +314,7 @@
      * @returns {__domCache}
      * @private
      */
-    const __domCache = function() {
+    const __domCache = function () {
         const smusic = this.smusic;
         this.dom = {
             scroll: {
@@ -357,7 +357,7 @@
      * 渲染列表
      * @private
      */
-    const __renderList = function() {
+    const __renderList = function () {
         const self = this,
             list = self.dom.scroll.list,
             data = self.playList;
@@ -378,13 +378,13 @@
      * 渲染歌词
      * @private
      */
-    const __renderLyric = function() {
+    const __renderLyric = function () {
         const self = this,
             rowHeight = 30;
         const lyricHeight = self.dom.scroll.lyric.parentNode.offsetHeight;
         let html = '',
             i = 0;
-        _getLyric(this.playList, this.playIndex, function(lyric) {
+        _getLyric(this.playList, this.playIndex, function (lyric) {
             if (typeof lyric === "number") {
                 switch (lyric) {
                     case 0:
@@ -429,7 +429,7 @@
      * 设置播放缓冲
      * @private
      */
-    const __setBuffer = function() {
+    const __setBuffer = function () {
         const [DOM, AUDIO, smusicId] = [this.dom, this.audio, this.smusicId];
         _bufferTimer[smusicId] && clearInterval(_bufferTimer[smusicId]);
         const progressWidth = parseFloat(DOM.progress.bar.offsetWidth);
@@ -437,7 +437,7 @@
             const totalTime = calcTime(AUDIO.duration);
             DOM.time.textContent = `00:00/${totalTime}`;
         }
-        _bufferTimer[smusicId] = setInterval(function() {
+        _bufferTimer[smusicId] = setInterval(function () {
             const buffer = AUDIO.buffered.length;
             if (buffer > 0 && AUDIO.buffered != undefined) {
                 const bufferWidth = (AUDIO.buffered.end(buffer - 1) / AUDIO.duration) * progressWidth;
@@ -454,14 +454,14 @@
      * 绑定事件
      * @private
      */
-    const __bindAction = function() {
+    const __bindAction = function () {
         const [self, DOM, AUDIO] = [this, this.dom, this.audio];
         //进度条宽度
         const progressWidth = Math.round(DOM.progress.bar.offsetWidth);
         const volumeHeight = Math.round(DOM.volume.bar.offsetHeight);
 
         //列表面板和歌词面板切换
-        bind(self.smusic, 'click', '.js-smusic-panel--tab', function(event) {
+        bind(self.smusic, 'click', '.js-smusic-panel--tab', function (event) {
             event.stopPropagation();
             if (utils.hasClass(this, 'active')) return false;
             const tab = this.getAttribute('data-panel');
@@ -476,7 +476,7 @@
         });
 
         //Audio timeupdate事件
-        bind(AUDIO, 'timeupdate', function() {
+        bind(AUDIO, 'timeupdate', function () {
             if (!isNaN(AUDIO.duration)) {
                 const
                     surplusTime = calcTime(AUDIO.currentTime),
@@ -507,7 +507,7 @@
         });
 
         //播放模式切换
-        bind(DOM.btn.mode, 'click', function() {
+        bind(DOM.btn.mode, 'click', function () {
             const mode = this.getAttribute('data-play-mode');
             let _mode;
             switch (Number(mode)) {
@@ -525,7 +525,7 @@
         });
 
         //播放暂停
-        bind(DOM.btn.play, 'click', function() {
+        bind(DOM.btn.play, 'click', function () {
             const isPlay = utils.hasClass(this, 'smusic-music-play');
             if (isPlay) {
                 self.pause();
@@ -551,7 +551,7 @@
         });
 
         //点击进度条
-        bind(DOM.progress.bar, 'click', function(event) {
+        bind(DOM.progress.bar, 'click', function (event) {
             event.stopPropagation();
             const rect = this.getBoundingClientRect();
             const progress = Math.min(progressWidth, Math.abs(event.clientX - rect.left)) / progressWidth;
@@ -568,7 +568,7 @@
         });
 
         //音量静音开关
-        bind(DOM.btn.volume, 'click', function(event) {
+        bind(DOM.btn.volume, 'click', function (event) {
             if (AUDIO.muted) {
                 utils.removeClass(this, 'smusic-volume--mute');
                 this.setAttribute('title', '静音');
@@ -582,7 +582,7 @@
 
         //点击列表
 
-        bind(DOM.scroll.list, 'click', '.js-smusic-song--item', function(event) {
+        bind(DOM.scroll.list, 'click', '.js-smusic-song--item', function (event) {
             const index = this.getAttribute('data-song-index');
             if (utils.hasClass(this, 'active')) {
                 self.play();
@@ -599,7 +599,7 @@
      * @param isInit
      * @private
      */
-    const __playMusic = function(index, callback, isInit) {
+    const __playMusic = function (index, callback, isInit) {
         const [DOM, AUDIO, listLength] = [this.dom, this.audio, this.playList.length];
         //index 调整
         (index >= (listLength - 1)) && (index = (listLength - 1));
@@ -611,7 +611,7 @@
             log("没有要播放的歌曲");
             return false;
         }
-        const tempHandle = function() {
+        const tempHandle = function () {
             return __setBuffer.call(this);
         }.bind(this);
         //在canplay事件监听前移除之前的监听
@@ -879,7 +879,7 @@
             this.setMode(this.playMode);
 
             if (this.playList.length) {
-                this.playByMode(undefined, function() {
+                this.playByMode(undefined, function () {
                     if (!config.autoPlay) {
                         utils.trigger(this.dom.btn.play, 'click');
                     }
@@ -905,7 +905,7 @@
         }
 
         //析构
-        destroy() {};
+        destroy() { };
     }
 
     /**

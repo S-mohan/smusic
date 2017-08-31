@@ -2,7 +2,7 @@
  * mo v0.0.1
  * author : smohan
  * The MIT License (MIT)
- * Copyright (c) 2016 https://smohan.im(net)
+ * Copyright (c) 2016 https://smohan.net
  */
 (() => {
 
@@ -83,7 +83,7 @@
      * @param target
      * @returns {{}}
      */
-    const assign = function(target = {}) {
+    const assign = function (target = {}) {
         target = Object(target)
         for (let i = 1, len = arguments.length; i < len; i++) {
             let source = arguments[i]
@@ -188,7 +188,7 @@
             return
         }
         if (sel) { //事件代理
-            handler = function(e) {
+            handler = function (e) {
                 //todo, 多选择器支持
                 const nodes = qsa(sel, element)
                 let matched = false
@@ -270,12 +270,12 @@
         for (let i in headers) {
             xhr.setRequestHeader(i, headers[i])
         }
-        xhr.onload = function() {
+        xhr.onload = function () {
             if (xhr.status >= 200 && xhr.status < 400) {
                 let response = xhr.responseText
                 try {
                     response = JSON.parse(response)
-                } catch (e) {}
+                } catch (e) { }
                 done && done.call(null, response, xhr)
             } else {
                 fail && fail.call(xhr.status, 'error', xhr)

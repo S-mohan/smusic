@@ -1,4 +1,4 @@
-#Smusic
+# Smusic
 
 一款基于HTML5、Css3的列表式音乐播放器，包含列表，音量，进度，时间，歌词展示以及播放模式等功能，不依赖任何库
 
@@ -9,12 +9,12 @@
 ![smuic](https://img.smohan.net/article/9615e13fcf51eae18dc4d40afaa9e0ab.jpg 'smusic')
 
 
-###[项目地址][1]
+### [项目地址][1]
 
-###[DEMO][2]
+### [DEMO][2]
 
 
-###使用方式
+### 使用方式
 
 #### (c)npm install
 

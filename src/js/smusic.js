@@ -581,7 +581,6 @@
         });
 
         //点击列表
-
         bind(DOM.scroll.list, 'click', '.js-smusic-song--item', function (event) {
             const index = this.getAttribute('data-song-index');
             if (utils.hasClass(this, 'active')) {
@@ -847,12 +846,12 @@
                     className = 'smusic-mode--loop';
                     break;
                 case 2:
-                    title = '单曲循环';
-                    className = 'smusic-mode--single';
-                    break;
-                case 3:
                     title = '随机播放';
                     className = 'smusic-mode--random';
+                    break;
+                case 3:
+                    title = '单曲循环';
+                    className = 'smusic-mode--single';
                     break;
             }
             $Mode.setAttribute('data-play-mode', mode.toString());

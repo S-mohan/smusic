@@ -81,7 +81,7 @@ const Banner = [
     ' * <%= pkg.name %> v<%= pkg.version %>',
     ' * <%= pkg.author %>',
     ' * The <%= pkg.license %> License (<%= pkg.license %>)',
-    ' * https://smohan.im/lab/smusic',
+    ' * https://smohan.net/lab/smusic',
     ' * <%= pkg.homepage%>',
     ' */',
     ''

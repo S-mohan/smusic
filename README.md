@@ -165,5 +165,5 @@ pause(callback)
 增加了是否自动播放的配置项开关 ```autoPlay```,灵活配置播放器启动时是否自动播放
 
 
-[1]: https://smohan.im/lab/smusic
+[1]: https://smohan.net/lab/smusic
 [2]: https://s-mohan.github.io/demo/smusic/index.html

@@ -147,7 +147,7 @@ play(callback)
 pause(callback)
 ```
 
-###更新记录
+### 更新记录
 
 版本：```2.0.1```
 代码重构(es6,scss,gulp等)，新增向列表追加歌曲(addSong)、上一曲(next)、下一曲(prev)等对外接口，优化拖拽、歌词等功能，优化界面
